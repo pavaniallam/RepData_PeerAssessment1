@@ -3,7 +3,7 @@
 
 ## Loading and preprocessing the data
 
-Download, extract and store the data in the **activity** data frame. Also transform the date field to `Date` format and print a sample of values to understand the data.
+Download, extract and store the data in the `activity` data frame. Also transform the date field to `Date` format and print a sample of values to understand the data.
 
 ```{r}
 fileUrl <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
@@ -42,6 +42,13 @@ colnames(average_steps) <- c("interval","steps")
 q<-ggplot(data=average_steps,aes(x=interval,y=steps)) +
   geom_line()
 print(q)
+```
+
+The 5-minute interval which contains the maximum number of steps across all the days in the dataset is:
+
+```{r}
+maxtime<-average_steps[which.max(average_steps$steps),"interval"]
+strftime( as.POSIXct(Sys.Date()) + as.difftime(round(maxtime/100), units="hours")+ as.difftime(maxtime%%100, units="mins"), "%r",tz="UTC") 
 ```
 
 ## Imputing missing values

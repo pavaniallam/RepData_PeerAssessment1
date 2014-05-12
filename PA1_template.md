@@ -3,7 +3,7 @@
 
 ## Loading and preprocessing the data
 
-Download, extract and store the data in the **activity** data frame. Also transform the date field to `Date` format and print a sample of values to understand the data.
+Download, extract and store the data in the `activity` data frame. Also transform the date field to `Date` format and print a sample of values to understand the data.
 
 
 ```r
@@ -94,6 +94,19 @@ print(q)
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
 
+
+The 5-minute interval which contains the maximum number of steps across all the days in the dataset is:
+
+
+```r
+maxtime <- average_steps[which.max(average_steps$steps), "interval"]
+strftime(as.POSIXct(Sys.Date()) + as.difftime(round(maxtime/100), units = "hours") + 
+    as.difftime(maxtime%%100, units = "mins"), "%r", tz = "UTC")
+```
+
+```
+## [1] "08:35:00 AM"
+```
 
 ## Imputing missing values
 
