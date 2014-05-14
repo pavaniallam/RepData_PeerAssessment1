@@ -108,7 +108,22 @@ strftime(as.POSIXct(Sys.Date()) + as.difftime(round(maxtime/100), units = "hours
 ## [1] "08:35:00 AM"
 ```
 
+
 ## Imputing missing values
+
+The total number of missing values (NAs) in the dataset is calculated below:
+
+
+```r
+sum(is.na(activity$steps))
+```
+
+```
+## [1] 2304
+```
+
+
+Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
 
 
 

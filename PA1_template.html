@@ -268,6 +268,16 @@ strftime(as.POSIXct(Sys.Date()) + as.difftime(round(maxtime/100), units = &quot;
 
 <h2>Imputing missing values</h2>
 
+<p>The total number of missing values (NAs) in the dataset is calculated below:</p>
+
+<pre><code class="r">sum(is.na(activity$steps))
+</code></pre>
+
+<pre><code>## [1] 2304
+</code></pre>
+
+<p>Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.</p>
+
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
 
 </body>
