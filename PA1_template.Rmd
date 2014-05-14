@@ -59,7 +59,25 @@ The total number of missing values (NAs) in the dataset is calculated below:
 sum(is.na(activity$steps))
 ```
 
-Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
+Use the mean for 5-minute interval, to replace the missing values.
+
+```{r}
+fixed<-activity
+fixed[is.na(fixed[, 1]), 1]<-average_steps[is.na(fixed[, 1]),2]
+```
+
+Create a histogram of the new dataset, which has the NAs replaced with the 5-minute means.
+
+```{r}
+qplot(date, weight=fixed$steps, data=fixed, geom="histogram")
+```
+
+Calculate and report the mean and media values. We can see that the values differ from the initial calculation, and have higher value. It is also observed in the graph above. Most days have an increased number of mean of steps, since the NAs have been replaced by the 5-minute interval mean.
+
+```{r}
+mean(tapply(fixed$steps, fixed$date, sum, na.rm = TRUE))
+median(tapply(fixed$steps, fixed$date, sum, na.rm = TRUE))
+```
 
 
 

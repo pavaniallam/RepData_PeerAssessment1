@@ -123,7 +123,44 @@ sum(is.na(activity$steps))
 ```
 
 
-Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
+Use the mean for 5-minute interval, to replace the missing values.
+
+
+```r
+fixed <- activity
+fixed[is.na(fixed[, 1]), 1] <- average_steps[is.na(fixed[, 1]), 2]
+```
+
+
+Create a histogram of the new dataset, which has the NAs replaced with the 5-minute means.
+
+
+```r
+qplot(date, weight = fixed$steps, data = fixed, geom = "histogram")
+```
+
+```
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8.png) 
+
+```r
+mean(tapply(fixed$steps, fixed$date, sum, na.rm = TRUE))
+```
+
+```
+## [1] 10766
+```
+
+```r
+median(tapply(fixed$steps, fixed$date, sum, na.rm = TRUE))
+```
+
+```
+## [1] 10766
+```
+
 
 
 
