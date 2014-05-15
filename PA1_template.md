@@ -145,6 +145,10 @@ qplot(date, weight = fixed$steps, data = fixed, geom = "histogram")
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8.png) 
 
+
+Calculate and report the mean and media values. We can see that the values differ from the initial calculation, and have higher value. It is also observed in the graph above. Most days have an increased number of mean of steps, since the NAs have been replaced by the 5-minute interval mean.
+
+
 ```r
 mean(tapply(fixed$steps, fixed$date, sum, na.rm = TRUE))
 ```
@@ -162,6 +166,25 @@ median(tapply(fixed$steps, fixed$date, sum, na.rm = TRUE))
 ```
 
 
-
-
 ## Are there differences in activity patterns between weekdays and weekends?
+
+Append "Weekend" or "Weekday" to a new field, conditionally.
+
+
+```r
+library(lattice)
+fixed$day <- as.factor(ifelse(weekdays(fixed$date) %in% c("Saturday", "Sunday"), 
+    "Weekend", "Weekday"))
+```
+
+
+Plot the 5-minute average of steps, by weekday/weekend.
+
+
+```r
+xyplot(steps ~ interval | day, aggregate(steps ~ interval + day, fixed, FUN = mean), 
+    layout = c(1, 2), type = "l", group = day)
+```
+
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11.png) 
+
