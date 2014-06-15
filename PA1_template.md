@@ -5,7 +5,6 @@
 
 Download, extract and store the data in the `activity` data frame. Also transform the date field to `Date` format and print a sample of values to understand the data.
 
-
 ```r
 fileUrl <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
 download.file(fileUrl, destfile = "Dataset.zip", method = "curl")
@@ -39,7 +38,6 @@ summary(activity)
 ##  Max.   :806.0   Max.   :2012-11-30   Max.   :2355  
 ##  NA's   :2304
 ```
-
 
 ## What is mean total number of steps taken per day?
 
@@ -77,7 +75,6 @@ median(tapply(activity$steps, activity$date, sum, na.rm = TRUE))
 ```
 ## [1] 10395
 ```
-
 
 ## What is the average daily activity pattern?
 
@@ -164,7 +161,6 @@ median(tapply(fixed$steps, fixed$date, sum, na.rm = TRUE))
 ```
 ## [1] 10766
 ```
-
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
